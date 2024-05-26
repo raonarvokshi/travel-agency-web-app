@@ -1,0 +1,32 @@
+{% extends "account.html" %}
+{% load static %}
+
+{% block title %} Delete Account {% endblock title %}
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+
+{% block css-cont-style %} delete-acc-container {% endblock css-cont-style %}
+{% block border-color %}border-danger{% endblock border-color %}
+{% block page-title %}
+Delete {{ request.user | title }}'s Account
+{% endblock page-title %}
+
+{% block action %}{% url 'delete_acc' %}{% endblock action %}
+
+{% block inputs %}
+    <div class="mb-3 mt-4">
+        <input id="password" name="account_password" type="password" placeholder="Account Password..." required autofocus="" 
+        class="form-control w-75 mx-auto">
+    </div>
+
+    <div class="mb-3">
+        <input id="confirm-password" name="confirm_password" type="password" placeholder="Confirm Password..." required autofocus="" 
+        class="form-control w-75 mx-auto">
+    </div>
+
+    <div class="button">
+        <button type="submit" class="btn btn-outline-danger btn-lg mt-2 del-acc-btn">Delete Account</button>
+    </div>
+{% endblock inputs %}

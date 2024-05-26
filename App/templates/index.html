@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section id="home" class="bg-light">
+    <div class="container">
+      <div class="row min-vh-100">
+        <div class="col-lg-6 align-self-center">
+          <h1>
+            <span id="type-effect"></span>
+          </h1>
+          <p class="fs-5">
+            Take the trip of a lifetime with our expert travel planning and booking Services.
+            Let us handle dhe details so you can focus on the adventure
+          </p>
+          <a href="{% url 'book' %}" class="btn btn-outline-info btn-lg
+          fw-bolder contact-btn rounded-5 button">
+            Book Now
+          </a>
+        </div>
+        <div class="col-lg-6 align-self-center d-none d-lg-inline">
+            <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+              </div>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="{% static 'img/hero-img1.jpg' %}" alt="" class="img-fluid">
+                </div>
+                <div class="carousel-item">
+                  <img src="{% static 'img/hero-img2.jpg' %}" alt="" class="img-fluid">
+                </div>
+              <div class="carousel-item">
+                <img src="{% static 'img/hero-img3.jpg' %}" alt="" class="img-fluid">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <header class="mb-5">
+    <img src="{% static 'img/travel.jpg' %}" alt="" class="img-fluid">
+  </header>
+
+  <section id="about" class="">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="border-bottom border-info border-5 d-inline-block">About us</h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-6">
+          <p class="fs-5 my-5 py-5 about-text">
+            Roki is a leading travel agency based in Pristina, offering exceptional travel experiences to our valued clients.
+            With a passion for exploration and a commitment to customer satisfaction, we strive to create unforgettable journeys
+            that exceed expectations. Whether you're planning a relaxing beach getaway, an adventurous trek through the mountians,
+            or a cultural immersion in a cibrant city, our dedicated team of travel experts is here to curate the perfect itinerary 
+            tailored to your preferences and needs. Trust Roki to make your travel dreams come true
+          </p>
+        </div>
+        <div class="col-lg-6 mt-5 pt-lg-5">
+          <img src="{% static 'img/about.jpg' %}" alt="" class="img-fluid"/>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5 mt-5 bg-light">
+    <div class="container">
+      <div class="text-center">
+        <h1 class="border-bottom border-info border-5 d-inline-block">
+          Our Services
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 col-md-6 my-5 pt-5">
+          <img src="{% static 'img/services-img1.jpg' %}" alt="" class="img-fluid" />
+          <h1 class="py-3">
+            Customized Travel packages
+          </h1>
+          <p class="services-text">
+            We create personalized travel packages tailored to your needs and preferences.
+            Explore the world your way!
+          </p>
+          <a href="{% url 'customized' %}" class="btn btn-outline-info fw-bolder button text-decoration-none" >More info</a>
+        </div>
+        <div class="col-lg-4 col-md-6 my-lg-5 pt-lg-5 my-md-5 pt-md-5">
+          <img src="{% static 'img/services-img2.jpg' %}" alt="" class="img-fluid">
+          <h1 class="py-3">
+            Group Tours
+          </h1>
+          <p class="services-text">
+            Join one of our organized group tours and discover new destinations 
+            together with like-minded travelers. What are you waiting for?
+            come enjoy with your friends. Fun guaranteed!
+          </p>
+          <a href="{% url 'group' %}"
+          class="btn btn-outline-info fw-bolder button text-decoration-none 
+          mb-5 mb-lg-0">More info</a>
+        </div>
+        <div class="col-lg-4 col-md-12 my-lg-5 pt-lg-5 my-md-0 pt-md-0">
+          <img src="{% static 'img/services-img3.jpg' %}" alt="" class="img-fluid">
+          <h1 class="py-3">
+            Cultural Experiences
+          </h1>
+          <p class="services-text">
+            Immerse yourself in local cultures with our unique cultural experiences. 
+            Learn about traditions, history, and art. What are you waiting for? 
+            come with friends and learn while having fun
+          </p>
+          <a href="{% url 'cultural' %}" class="btn btn-outline-info fw-bolder button text-decoration-none">More info</a>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock content %}

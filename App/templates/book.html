@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Book Now{% endblock title %}
+
+{% block active-book %}active{% endblock active-book %}
+{% block active-home %}{% endblock active-home %}
+
+{% block content %}
+<div class="container book-container shadow-lg p-5">
+    <div class="text-center">
+      <h1 class="border-bottom border-primary border-5 pb-1 d-inline-block mb-3">Book Your Trip</h1>
+    </div>
+      <form action="{% url 'book' %}" method="post" class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Destination:</label>
+          <select name="destination" id="destination" class="form-select" required>
+            <option value="" selected disabled>Choose one</option>
+            <option value="Paris">Paris</option>
+            <option value="Berlin">Berlin</option>
+            <option value="New York">New York</option>
+            <option value="Kosovo">Kosovo</option>
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="departure-date" class="form-label">Departure Date:</label>
+          <input type="date" class="form-control" name="departure_date" id="departure-date" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="return-date" class="form-label">Return Date:</label>
+            <input type="date" class="form-control" name="return_date" id="return-date" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="travelers" class="form-label">Number of Travelers:</label>
+            <input type="number" class="form-control" name="travelers" id="travelers" required>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Book Now</button>
+        <div id="validation-error" class="text-danger mt-2"></div>
+      </form>
+  </div>
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

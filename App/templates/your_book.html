@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Your Book {% endblock title %}
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+{% block content %}
+    <div class="container mt-5 pt-5">
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered" id="example">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bg-secondary text-light text-center">DESTINATION</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Departure Date</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Return Date</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Number of Travelers</th>
+                        <th class="bg-secondary text-light text-center" style="width: 10%;">Approved?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        <tr>
+                            <td class="text-center">{{book.destination}}</td>
+                            <td class="text-center">{{book.departure_date}}</td>
+                            <td class="text-center">{{book.return_date}}</td>
+                            <td class="text-center">{{book.travelers}}</td>
+
+
+                            <td class="text-center">
+                                {% if book.approved %}
+                                    YES 🎉
+                                {% elif book.not_approved  %}
+                                    NO 😞
+                                {% elif book.pending %}
+                                PENDING &nbsp;<i class="fa-solid fa-clock fa-lg" style="color: #ffea00;"></i>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block footer %}
+
+{% endblock footer %}

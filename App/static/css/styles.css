@@ -1,0 +1,125 @@
+#home {
+    height: 80vh;
+}
+
+.button {
+    transition: background-color 0.3s !important;
+}
+
+.button:hover {
+    color: #fff !important;
+}
+
+.link {
+    position: relative;
+    overflow: hidden;
+}
+
+.link::after {
+    content: "";
+    display: block;
+    height: 4px;
+    width: 100%;
+    background-color: #66d9e8;
+    transform: scale(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+.link:hover::after {
+    transform: scale(1);
+}
+
+.login-link {
+    text-decoration: none;
+}
+
+.login-link:hover {
+    text-decoration: underline;
+}
+
+.register-link {
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+.about-text {
+    text-align: justify;
+}
+
+.form-control {
+    box-shadow: none !important;
+}
+
+.form-select {
+    box-shadow: none !important;
+}
+
+.services-text {
+    text-align: justify;
+}
+
+.nav-btn {
+    box-shadow: none !important;
+}
+
+.book-container {
+    margin-top: 11em;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dataTables_paginate {
+    margin-top: 10px !important;
+}
+
+td.dataTables_empty {
+    color: red !important;
+    font-weight: bolder;
+}
+
+.form-container {
+    margin-top: 9em;
+    max-width: 900px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.active {
+    color: #54B4D3 !important;
+}
+
+.register-container {
+    margin-top: 4em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.edit-container {
+    margin-top: 11em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.delete-acc-container {
+    margin-top: 15em;
+    max-width: 900px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.del-acc-btn {
+    margin-left: 102px;
+}
+
+.ajs-message.ajs-custom {
+    color: #31708f !important;
+    background-color: #d9edf7 !important;
+    border-color: #31708f !important;
+}

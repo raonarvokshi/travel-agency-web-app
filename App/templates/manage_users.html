@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} User Managment {% endblock title %}
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+{% for msg in messages %}
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    {% if msg.tags == "error" %}
+    <script>
+        alertify.set('notifier', 'position', 'top-center');
+        alertify.error("{{msg}}");
+    </script>
+    {% elif msg.tags == "success" %}
+    <script>
+        alertify.set('notifier', 'position', 'top-center');
+        alertify.success("{{msg}}");
+    </script>
+    {% endif %}
+{% endfor %}
+
+{% block content %}
+    <div class="container mt-5 pt-4">
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered" id="example">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bg-secondary text-light text-center">FIRST NAME</th>
+                        <th scope="col" class="bg-secondary text-light text-center">LAST NAME</th>
+                        <th scope="col" class="bg-secondary text-light text-center">USERNAME</th>
+                        <th scope="col" class="bg-secondary text-light text-center">EMAIL</th>
+                        <th class="bg-secondary text-light text-center" style="width: 2%;">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                            <tr>
+                                <td class="text-center">{{user.first_name}}</td>
+                                <td class="text-center">{{user.last_name}}</td>
+                                <td class="text-center">{{user.username}}</td>
+                                <td class="text-center">{{user.email}}</td>
+                                <td class="text-center d-flex">
+                                    <a class="btn btn-warning me-2" href="{% url 'edit_user' user.id %}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </a>
+                                    <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-target="#deleteUserModal{{ user.pk }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteUserModal{{ user.pk }}" tabindex="-1" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h1 class="modal-title fs-5 text-center text-danger" id="deleteUserModalLabel">
+                                            <i class="fa-solid fa-trash-can fa-lg"></i>&nbsp;{{ user.get_full_name }}
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body text-center fs-5 text-danger">
+                                            <span class="text-danger"><i class="fa-solid fa-trash-can fa-2x"></i></span>
+                                            <div class="mt-2 mb-4 text-danger fw-bolder">Are you that you want to delete {{ user.username }}'s account?</div>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">NO</button>
+                                        <a href="{% url 'delete_user' user.id %}" class="btn btn-outline-danger btn-sm">YES</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

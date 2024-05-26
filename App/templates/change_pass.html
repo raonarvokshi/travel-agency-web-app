@@ -1,0 +1,37 @@
+{% extends "account.html" %}
+{% load static %}
+
+{% block title %} Change Password {% endblock title %}
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+
+{% block css-cont-style %} delete-acc-container {% endblock css-cont-style %}
+{% block border-color %}border-primary{% endblock border-color %}
+{% block page-title %}
+Change {{ request.user | title }}'s Password
+{% endblock page-title %}
+
+{% block action %}{% url 'change_password' %}{% endblock action %}
+{% block inputs %}
+    <div class="mb-3 mt-4">
+        <input id="password" name="account_password" type="password" placeholder="Account Password..."required autofocus="" 
+        class="form-control w-75 mx-auto">
+    </div>
+
+    <div class="mb-3">
+        <input id="new-password" name="new_password" type="password" placeholder="New Password..."required autofocus="" 
+        class="form-control w-75 mx-auto">
+    </div>
+
+    <div class="mb-3">
+        <input id="confirm_new-password" name="confirm_new_password" type="password" placeholder="Confirm New Password..."required autofocus="" 
+        class="form-control w-75 mx-auto">
+    </div>
+
+    <div class="button">
+        <button type="submit" class="btn btn-outline-primary btn-lg mt-2 del-acc-btn">Change Password</button>
+    </div>
+
+{% endblock inputs %}

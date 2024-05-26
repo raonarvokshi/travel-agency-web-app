@@ -1,0 +1,105 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Book Data {% endblock title %}
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+{% block content %}
+    <div class="container mt-5 pt-5">
+        <div class="table-responsive mt-5">
+            <table class="table table-bordered" id="example">
+                <thead>
+                    <tr>
+                        <th scope="col" class="bg-secondary text-light text-center">DESTINATION</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Departure Date</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Return Date</th>
+                        <th scope="col" class="bg-secondary text-light text-center">Number of Travelers</th>
+                        <th scope="col" class="bg-secondary text-light text-center">User</th>
+                        <th class="bg-secondary text-light text-center" style="width: 2%;">Approve</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for book in books %}
+                        {% if book.pending %}
+                            <tr>
+                                <td class="text-center">{{book.destination}}</td>
+                                <td class="text-center">{{book.departure_date}}</td>
+                                <td class="text-center">{{book.return_date}}</td>
+                                <td class="text-center">{{book.travelers}}</td>
+                                <td class="text-center">{{book.user}}</td>
+                                    <td class="text-center d-flex">
+                                        <button type="submit" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#approveFlightModal{{ book.id }}">YES</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#refuseFlightModal{{ book.id }}">NO</button>
+                                    </td>
+                            </tr>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="approveFlightModal{{ book.id }}" tabindex="-1" aria-labelledby="approveFlightModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-danger fw-bolder" id="approveFlightModalLabel">
+                                        <i class="fa-solid fa-plane fa-lg"></i>&nbsp;Approve Flight
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center text-danger">
+                                        <i class="fa-solid fa-plane fa-2x"></i>
+                                        <br>
+                                        <div class="fw-bolder mt-3">
+                                            Are you sure that you want to approve this flight?
+                                            <br>
+                                            destination: {{ book.destination }}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">NO</button>
+                                    <form method="POST" action="{% url 'approve_flight' book.id %}" class="m-0">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" name="approve" value="yes" data-bs-toggle="modal" data-bs-target="#approveFlightModal">YES</button>
+                                    </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="refuseFlightModal{{ book.id }}" tabindex="-1" aria-labelledby="refuseFlightModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5 text-danger fw-bolder" id="refuseFlightModalLabel">
+                                        <i class="fa-solid fa-plane fa-lg"></i>&nbsp;Refuse Flight
+                                    </h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body text-center text-danger">
+                                        <i class="fa-solid fa-plane fa-2x"></i>
+                                        <br>
+                                        <div class="fw-bolder mt-3">
+                                            Are you sure that you want to refuse this flight?
+                                            <br>
+                                            destination: {{ book.destination }}
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">NO</button>
+                                        <form method="POST" action="{% url 'refuse_flight' book.id %}" class="m-0">
+                                            {% csrf_token %}
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" name="refuse" value="yes">YES</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block footer %}{% endblock footer %}

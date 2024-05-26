@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %} {{ request.user | title }}'s Account {% endblock title %}
+
+
+{% block active-home %}{% endblock active-home %}
+{% block active-curr-user %}active{% endblock active-curr-user %}
+
+{% block content %}
+    <div class="container {% block css-cont-style %} form-container {% endblock css-cont-style %} 
+    d-flex flex-column justify-content-center align-self-center mb-5 shadow-lg p-5 rounded-5">
+        <div class="text-center">
+          <h1 class="border-bottom {% block border-color %}border-primary{% endblock border-color %} border-5 pb-1 d-inline-block">
+            {% block page-title %}
+            {{ request.user | title }}'s Account Details
+            {% endblock page-title %}
+          </h1>
+        </div>
+        <form action="{% block action %}{% url 'account' %}{% endblock action %}" method="POST">
+          {% csrf_token %}
+          {% block inputs %}
+            <div class="mb-3">
+              <label for="first-name" class="form-label">First Name:</label>
+              <input id="first-name" name="first_name" type="text" placeholder="First Name" required autofocus="" 
+              class="form-control rounded-5" value="{{ request.user.first_name }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="last-name" class="form-label">Last Name:</label>
+              <input id="last-name" name="last_name" type="text" placeholder="Last Name" required autofocus="" 
+              class="form-control rounded-5" value="{{ request.user.last_name }}">
+            </div>
+
+            <div class="mb-3">
+              <label for="username" class="form-label">Username:</label>
+              <input id="username" name="username" type="text"placeholder="Username"required autofocus="" 
+              class="form-control rounded-5" value="{{ request.user }}">
+            </div>
+              
+            <div class="mb-3">
+              <label for="email" class="form-label">Email:</label>
+              <input id="email" name="email" type="email" placeholder="email"required autofocus="" 
+              class="form-control rounded-5" value="{{ request.user.email }}">
+            </div>
+
+            <div class="password">
+              <a href="{% url 'change_password' %}"class="text-decoration-none">Change password</a>
+              <a href="{% url 'delete_acc' %}" class="text-decoration-none ms-2 text-danger">Delete Account</a>
+            </div>
+
+            <div class="button">
+                <button type="submit" class="btn btn-outline-primary btn-lg rounded-pill mt-3">Submit</button>
+            </div>
+          {% endblock inputs %}
+        </form>
+    </div>
+{% endblock %}
+{% block footer %} {% endblock footer %}
